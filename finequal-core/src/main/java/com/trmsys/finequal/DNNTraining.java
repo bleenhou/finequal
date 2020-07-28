@@ -2,8 +2,7 @@ package com.trmsys.finequal;
 
 import java.util.List;
 
-import org.deeplearning4j.datasets.iterator.impl.EmnistDataSetIterator;
-import org.deeplearning4j.datasets.iterator.impl.EmnistDataSetIterator.Set;
+import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
@@ -11,105 +10,55 @@ import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
-import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
-import org.nd4j.linalg.learning.config.Adam;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.dataset.DataSet;
+import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.learning.config.Nesterovs;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 
 public class DNNTraining {
 
 	public static void main (String[] args) throws Exception {
-		
-		int batchSize = 128; // how many examples to simultaneously train in the network
-		Set emnistSet = EmnistDataSetIterator.Set.BALANCED;
-		EmnistDataSetIterator emnistTrain = new EmnistDataSetIterator(emnistSet, batchSize, true);
-		EmnistDataSetIterator emnistTest = new EmnistDataSetIterator(emnistSet, batchSize, false);
-		
-		int outputNum = EmnistDataSetIterator.numLabels(emnistSet); // total output classes
-		int rngSeed = 123; // integer for reproducability of a random number generator
-		int numRows = 28; // number of "pixel rows" in an mnist digit
-		int numColumns = 28;
-
-		MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
-            .seed(rngSeed)
-            .updater(new Adam())
-            .l2(1e-4)
-            .list()
-            .layer(new DenseLayer.Builder()
-                .nIn(numRows * numColumns) // Number of input datapoints.
-                .nOut(1000) // Number of output datapoints.
-                .activation(Activation.RELU) // Activation function.
-                .weightInit(WeightInit.XAVIER) // Weight initialization.
-                .build())
-            .layer(new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
-                .nIn(1000)
-                .nOut(outputNum)
-                .activation(Activation.SOFTMAX)
-                .weightInit(WeightInit.XAVIER)
-                .build())
-            .build();
-		
-		MultiLayerNetwork network = new MultiLayerNetwork(conf);
-		network.init();
-		
-		int eachIterations = 10;
-		network.addListeners(new ScoreIterationListener(eachIterations));
-		
-		network.fit(emnistTrain, 2);
-		
-		// evaluate basic performance
-		Evaluation eval = network.evaluate(emnistTest);
-		System.out.println(eval.accuracy());
-		System.out.println(eval.precision());
-		System.out.println(eval.recall());
-
+		train(Finequal.loadData());
 	}
 	
 	public static void train (List<ExtendedProfile> profiles) throws Exception {
 		
-		int batchSize = 128; // how many examples to simultaneously train in the network
-		Set emnistSet = EmnistDataSetIterator.Set.BALANCED;
-		EmnistDataSetIterator emnistTrain = new EmnistDataSetIterator(emnistSet, batchSize, true);
-		EmnistDataSetIterator emnistTest = new EmnistDataSetIterator(emnistSet, batchSize, false);
-		
-		int outputNum = EmnistDataSetIterator.numLabels(emnistSet); // total output classes
-		int rngSeed = 123; // integer for reproducability of a random number generator
-		int numRows = 28; // number of "pixel rows" in an mnist digit
-		int numColumns = 28;
-
-		MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
-            .seed(rngSeed)
-            .updater(new Adam())
-            .l2(1e-4)
+		final DataSetIterator dsIt = getTrainingData(profiles);
+		final MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder().seed(1234)
+            .weightInit(WeightInit.XAVIER)
+		    .updater(new Nesterovs(0.1, 0.9)) 
             .list()
-            .layer(new DenseLayer.Builder()
-                .nIn(numRows * numColumns) // Number of input datapoints.
-                .nOut(1000) // Number of output datapoints.
-                .activation(Activation.RELU) // Activation function.
-                .weightInit(WeightInit.XAVIER) // Weight initialization.
-                .build())
-            .layer(new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
-                .nIn(1000)
-                .nOut(outputNum)
-                .activation(Activation.SOFTMAX)
-                .weightInit(WeightInit.XAVIER)
-                .build())
+            .layer(0, new DenseLayer.Builder()
+                    .nIn(1).nOut(50)
+                    .activation(Activation.RELU) 
+                    .build())
+            .layer(1, new OutputLayer.Builder(LossFunctions.LossFunction.MSE)
+                    .nIn(50).nOut(1)
+                    .activation(Activation.IDENTITY) 
+                    .build())
             .build();
 		
 		MultiLayerNetwork network = new MultiLayerNetwork(conf);
 		network.init();
+		network.addListeners(new ScoreIterationListener(100));
+		network.fit(dsIt, 10);
 		
-		int eachIterations = 10;
-		network.addListeners(new ScoreIterationListener(eachIterations));
-		
-		network.fit(emnistTrain, 2);
-		
-		// evaluate basic performance
-		Evaluation eval = network.evaluate(emnistTest);
-		System.out.println(eval.accuracy());
-		System.out.println(eval.precision());
-		System.out.println(eval.recall());
-
+		final double income = profiles.get(0).getIncome().doubleValue();
+		final INDArray testInput = Nd4j.create(new double[] { income }, 1, 1);
+        INDArray out = network.output(testInput, false);
+        System.out.println(out);
+        System.out.println(profiles.get(0).getRateSpread());
 	}
 	
+	 public static DataSetIterator getTrainingData(List<ExtendedProfile> profiles){
+	 	final double [] incomes = profiles.stream().mapToDouble(p -> p.getIncome().doubleValue()).toArray();
+	 	final double [] rates = profiles.stream().mapToDouble(p -> p.getRateSpread()).toArray();
+	 	final INDArray inputArray = Nd4j.create(incomes, profiles.size(), 1);
+	 	final INDArray outPut = Nd4j.create(rates, profiles.size(), 1);
+	 	final DataSet dataSet = new DataSet(inputArray, outPut);
+        return new ListDataSetIterator<>(dataSet.asList(), 128);
+    }
 }

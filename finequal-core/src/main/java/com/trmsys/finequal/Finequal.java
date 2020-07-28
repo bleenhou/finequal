@@ -18,7 +18,7 @@ public class Finequal {
 		final List<ExtendedProfile> profiles = loadData();
 	}
 
-	private static List<ExtendedProfile> loadData() throws Exception {
+	static List<ExtendedProfile> loadData() throws Exception {
 		final LineIterator it = FileUtils.lineIterator(new File("src/test/resources/curated.csv"), "UTF-8");
 		it.next(); // skip headers
 		final List<ExtendedProfile> profiles = new ArrayList<>();
