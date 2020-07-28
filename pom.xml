@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>chassis-parent</artifactId>
+        <groupId>com.trmsys.fabric.chassis</groupId>
+        <version>1.2.3</version>
+    </parent>
+    <groupId>com.trmsys.finequal</groupId>
+    <artifactId>finequal</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Finequal</name>
+    <packaging>pom</packaging>
+    <organization>
+        <name>Finastra</name>
+        <url>https://www.finastra.com</url>
+    </organization>
+    <modules>
+        <module>finequal-core</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <spring-web.version>5.2.6.RELEASE</spring-web.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-web.version}</version>
+            </dependency>
+            <!-- Wiremock -->
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock-jre8</artifactId>
+                <version>${wiremock.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>homemade-release</id>
+            <name>Homemade release</name>
+            <url>http://alm-artifacts.misys.global.ad/maven/content/repositories/homemade-release
+            </url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>homemade-snapshot</id>
+            <name>Homemade snapshot</name>
+            <url>http://alm-artifacts.misys.global.ad/maven/content/repositories/homemade-snapshot
+            </url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:60</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://alm-artifacts.misys.global.ad/nexus/content/groups/public</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+</project>

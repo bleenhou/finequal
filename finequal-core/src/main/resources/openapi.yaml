@@ -1,0 +1,106 @@
+swagger: '2.0'
+info:
+  description: |-
+    Inference API for the Finequal Neuronet
+  version: 0.0.1
+  title: FinEqual inference
+  contact:
+    name: API Support
+    url: https://community.fusionfabric.cloud/index.html
+  x-finastra-short-description: Inference API for the Finequal Neuronet
+  x-finastra-channel-type: SERVICE
+  x-finastra-maturity-level: BETA
+  x-finastra-tags:
+  x-finastra-audience: RESTRICTED
+  x-finastra-implementability: RESTRICTED
+  x-finastra-category: Other
+  x-finastra-subcategory:  
+  x-finastra-icon: Icons_11l.svg
+basePath: "/finequal/v1"
+schemes:
+- https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    description: Bearer JSON Web Token
+    name: Authorization
+    in: header
+  OAuth2:
+    type: oauth2
+    scopes: {}
+    description: Oauth 2.0 authentication
+    tokenUrl: https://api.lobdev.fusionfabric.cloud/login/v1/sandbox/oidc/token
+    flow: application
+security:
+- OAuth2: []
+- Bearer: []
+produces:
+- application/json
+paths:
+  "/inference":
+    post:
+      tags:
+      - Inference
+      summary: Infer a mortgage rate from the DNN using the supplied parameters
+      description: Infer a mortgage rate from the DNN using the supplied parameters
+      operationId: inference
+      parameters:
+        - in: body
+          name: profile
+          schema:
+            "$ref": "#/definitions/Profile"
+      responses:
+        '200':
+          description: Rate computed
+          schema:
+            "$ref": "#/definitions/Rate"
+definitions:
+  Profile:
+    title: Profile
+    description: Profile
+    type: object
+    properties:
+      loanType:
+        type: string
+        description: type of the loan
+        enum: [CONVENTIONAL, VA_GUARANTEED, FHA_INSURED, FSA_RHS_GUARANTEED]
+      purpose:
+        type: string
+        description: purpose of the loan
+        enum: [REFINANCING, PURCHASE, IMPROVEMENT]
+      applicantEthnicity:
+        type: string
+        description: ethnicity of the applicant
+        enum: [HISPANIC_LATINO, CAUCASIAN, AFRICAN_AMERICAN, AMERICAN_INDIAN, ASIAN, HAWAIIAN, NA]
+      coApplicantEthnicity:
+        type: string
+        description: ethnicity of the co-applicant
+        enum: [HISPANIC_LATINO, CAUCASIAN, AFRICAN_AMERICAN, AMERICAN_INDIAN, ASIAN, HAWAIIAN, NA]
+      applicantGender:
+        type: string
+        description: gender of the applicant
+        enum: [MALE, FEMALE, NA]
+      coApplicantGender:
+        type: string
+        description: gender of the co-applicant
+        enum: [MALE, FEMALE, NA]
+      income:
+        type: number
+        description: income applicant (in dollars)
+      loanAmount:
+        type: number
+        description: loan amount (in dollars)
+      city:
+        type: string
+        description: city of the applicant (for demo purposes)
+        enum: [RICHMOND, PARKER, OAK_LEAF, NAPLES]
+  Rate:
+    title: Rate
+    description: Rate
+    type: object
+    properties:
+      rate:
+        type: number
+        minimum: 0
+        maximum: 20
+        description: proposed rate of the mortgage

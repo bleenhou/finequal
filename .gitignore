@@ -1,0 +1,15 @@
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+## multi project target
+**/*/target
+
+## Test data file 
+finequal-core/src/test/resources/hmda_2017_nationwide_first-lien-owner-occupied-1-4-family-records_labels.csv
+finequal-core/src/test/resources/curated.csv
