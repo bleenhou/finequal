@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.springframework.boot.SpringApplication;
 
 import com.trmsys.fabric.chassis.ChassisApplication;
 
@@ -18,9 +19,20 @@ public class Finequal {
 	public static void main(String[] args) throws Exception {
 		final List<ExtendedProfile> profiles = loadData();
 		network = new DNN(profiles.subList(100, profiles.size()));
+		
+		// Testing block
 		for (ExtendedProfile p : profiles.subList(0, 100)) {
-			network.infer(p);
+			System.out.println("Initial Rate : " + p.getRateSpread());
+			double r1 = network.infer(p);
+			System.out.println("System rate : " + r1);
+			
+			p.setApplicantEthnicity(null);
+			double r2 = network.infer(p);
+			System.out.println("Unbiased rate : " + r2);
 		}
+		
+		// Run application
+		SpringApplication.run(Finequal.class, args);
 	}
 
 	static List<ExtendedProfile> loadData() throws Exception {

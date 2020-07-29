@@ -22,6 +22,7 @@ import org.nd4j.linalg.learning.config.Nesterovs;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.nd4j.shade.protobuf.common.collect.Lists;
 
+import com.trmsys.finequal.openapi.model.Profile;
 import com.trmsys.finequal.openapi.model.Profile.ApplicantEthnicityEnum;
 import com.trmsys.finequal.openapi.model.Profile.ApplicantGenderEnum;
 import com.trmsys.finequal.openapi.model.Profile.CoApplicantEthnicityEnum;
@@ -63,20 +64,12 @@ public class DNN {
 		network.fit(trainingSet, 5);
 	}
 	
-	public void infer (ExtendedProfile p) {
+	public double infer (Profile p) {
 		final double[] input = inputForProfile(p);
-		final INDArray out = network.output(Nd4j.create(input, 1, input.length), false);
-		System.out.println("Initial Rate : " + p.getRateSpread());
-		System.out.println("System proposed rate : " + out.getDouble(0,0));
-		
-		p.setCoApplicantEthnicity(null);
-		final double[] unbiasedInput = inputForProfile(p);
-		final INDArray unbiased = network.output(Nd4j.create(unbiasedInput, 1, unbiasedInput.length), false);
-		System.out.println("Unbiased rate : " + unbiased.getDouble(0,0));
-		System.out.println();
+		return network.output(Nd4j.create(input, 1, input.length), false).getDouble(0,0);
 	}
 
-	private static double[] inputForProfile(ExtendedProfile profile) {
+	private static double[] inputForProfile(Profile profile) {
 		List<Double> data = Lists.newArrayList();
 		data.add(profile.getIncome().doubleValue());
 		data.add(profile.getLoanAmount().doubleValue() / 100000);
@@ -112,7 +105,7 @@ public class DNN {
 		return new ListDataSetIterator<>(dataSet.asList(), 128);
 	}
 	
-	private static <T extends Enum<?>> List<Double> inputsForEnum(ExtendedProfile p, Function<ExtendedProfile, T> f,
+	private static <T extends Enum<?>> List<Double> inputsForEnum(Profile p, Function<Profile, T> f,
 			Class<T> cls) {
 		final List<Double> result = newArrayList();
 		for (T e : cls.getEnumConstants()) {
