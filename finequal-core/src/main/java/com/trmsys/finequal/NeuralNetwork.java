@@ -30,11 +30,14 @@ import com.trmsys.finequal.openapi.model.Profile.CoApplicantGenderEnum;
 import com.trmsys.finequal.openapi.model.Profile.LoanTypeEnum;
 import com.trmsys.finequal.openapi.model.Profile.PurposeEnum;
 
-public class DNN {
+public class NeuralNetwork {
 
+	private static final int HIDDEN_LAYER_SIZE = 128;
+	private static final int TRAINING_EPOCH_COUNT = 5;
+	
 	private MultiLayerNetwork network;
 
-	public DNN(List<ExtendedProfile> profiles) throws Exception {
+	public NeuralNetwork(List<ExtendedProfile> profiles) throws Exception {
 
 		final double[] sample = inputForProfile(profiles.get(0));
 		final int inputLength = sample.length;
@@ -43,25 +46,24 @@ public class DNN {
 		final DataSetIterator trainingSet = createDataset(profiles);
 
 		// Define DNN
-        final int nHidden = 256;
         this.network = new MultiLayerNetwork(new NeuralNetConfiguration.Builder()
                 .seed(1234)
                 .weightInit(WeightInit.XAVIER)
                 .updater(new Nesterovs(0.01, 0.9))
                 .list()
-                .layer(0, new DenseLayer.Builder().nIn(inputLength).nOut(nHidden)
+                .layer(0, new DenseLayer.Builder().nIn(inputLength).nOut(HIDDEN_LAYER_SIZE)
                         .activation(Activation.RELU) //Change this to RELU and you will see the net learns very well very quickly
                         .build())
                 .layer(1, new OutputLayer.Builder(LossFunctions.LossFunction.MSE)
                         .activation(Activation.IDENTITY)
-                        .nIn(nHidden).nOut(1).build())
+                        .nIn(HIDDEN_LAYER_SIZE).nOut(1).build())
                 .build()
         );
         network.init();
 
 		// Train DNN
 		network.addListeners(new ScoreIterationListener(100));
-		network.fit(trainingSet, 5);
+		network.fit(trainingSet, TRAINING_EPOCH_COUNT);
 	}
 	
 	public double infer (Profile p) {
@@ -71,14 +73,14 @@ public class DNN {
 
 	private static double[] inputForProfile(Profile profile) {
 		List<Double> data = Lists.newArrayList();
-		data.add(profile.getIncome().doubleValue());
-		data.add(profile.getLoanAmount().doubleValue() / 100000);
+		data.add(profile.getIncome().doubleValue() / 100000); // Normalizing
+		data.add(profile.getLoanAmount().doubleValue() / 100000); // Normalizing
 		data.addAll(inputsForEnum(profile, p -> p.getLoanType(), LoanTypeEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getPurpose(), PurposeEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getApplicantEthnicity(), ApplicantEthnicityEnum.class));
-		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantEthnicity(), CoApplicantEthnicityEnum.class));
+//		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantEthnicity(), CoApplicantEthnicityEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getApplicantGender(), ApplicantGenderEnum.class));
-		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantGender(), CoApplicantGenderEnum.class));
+//		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantGender(), CoApplicantGenderEnum.class));
 //		data.add(profile.getIncomeToMedianIncomeRatio());
 //		data.add(profile.getMinorityPercentage());
 //		data.add((double) profile.getPopulation());

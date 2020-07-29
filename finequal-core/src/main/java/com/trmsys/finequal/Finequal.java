@@ -6,29 +6,33 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 
 import com.trmsys.fabric.chassis.ChassisApplication;
+import com.trmsys.finequal.openapi.model.Profile.ApplicantEthnicityEnum;
 
 @ChassisApplication
 public class Finequal {
 
-	public static final String BASE_PATH = "/finequal/v1/";
-	public static DNN network;
+	public static final Logger LOG = LoggerFactory.getLogger(Finequal.class);
+	public static NeuralNetwork network;
 	
 	public static void main(String[] args) throws Exception {
 		final List<ExtendedProfile> profiles = loadData();
-		network = new DNN(profiles.subList(100, profiles.size()));
+		network = new NeuralNetwork(profiles.subList(100, profiles.size()));
 		
 		// Testing block
 		for (ExtendedProfile p : profiles.subList(0, 100)) {
-			System.out.println("Initial Rate : " + p.getRateSpread());
+			LOG.info("Initial Rate : {} %", String.format("%.2f", p.getRateSpread() * 100));
 			double r1 = network.infer(p);
-			System.out.println("System rate : " + r1);
+			LOG.info("System rate : {} %", String.format("%.2f", r1 * 100));
 			
-			p.setApplicantEthnicity(null);
+			p.setApplicantEthnicity(ApplicantEthnicityEnum.CAUCASIAN);
 			double r2 = network.infer(p);
-			System.out.println("Unbiased rate : " + r2);
+			LOG.info("Unbiased rate : {} %", String.format("%.2f", r2 * 100));
+			LOG.info("");
 		}
 		
 		// Run application

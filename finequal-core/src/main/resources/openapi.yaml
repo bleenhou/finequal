@@ -19,21 +19,6 @@ info:
 basePath: "/finequal/v1"
 schemes:
 - https
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    description: Bearer JSON Web Token
-    name: Authorization
-    in: header
-  OAuth2:
-    type: oauth2
-    scopes: {}
-    description: Oauth 2.0 authentication
-    tokenUrl: https://api.lobdev.fusionfabric.cloud/login/v1/sandbox/oidc/token
-    flow: application
-security:
-- OAuth2: []
-- Bearer: []
 produces:
 - application/json
 paths:
@@ -71,6 +56,7 @@ definitions:
       applicantEthnicity:
         type: string
         description: ethnicity of the applicant
+        default: CAUCASIAN
         enum: [HISPANIC_LATINO, CAUCASIAN, AFRICAN_AMERICAN, AMERICAN_INDIAN, ASIAN, HAWAIIAN, NA]
       coApplicantEthnicity:
         type: string
@@ -79,6 +65,7 @@ definitions:
       applicantGender:
         type: string
         description: gender of the applicant
+        default: MALE
         enum: [MALE, FEMALE, NA]
       coApplicantGender:
         type: string
