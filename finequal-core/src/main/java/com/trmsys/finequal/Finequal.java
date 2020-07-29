@@ -13,9 +13,14 @@ import com.trmsys.fabric.chassis.ChassisApplication;
 public class Finequal {
 
 	public static final String BASE_PATH = "/finequal/v1/";
-
+	public static DNN network;
+	
 	public static void main(String[] args) throws Exception {
 		final List<ExtendedProfile> profiles = loadData();
+		network = new DNN(profiles.subList(100, profiles.size()));
+		for (ExtendedProfile p : profiles.subList(0, 100)) {
+			network.infer(p);
+		}
 	}
 
 	static List<ExtendedProfile> loadData() throws Exception {

@@ -9,7 +9,7 @@ class ExtendedProfile extends Profile {
 	private final double rateSpread;
 	private final double minorityPercentage;
 	private final int population;
-	private final double medianIncome;
+	private final double incomeToMedianIncomeRatio;
 
 	ExtendedProfile(String[] fields) {
 		applicantEthnicity(parseEthnicity(unquote(fields[Field.applicant_ethnicity_name.ordinal()]),
@@ -23,9 +23,9 @@ class ExtendedProfile extends Profile {
 		income(parseDouble(unquote(fields[Field.applicant_income_000s.ordinal()])));
 		loanAmount(parseDouble(unquote(fields[Field.loan_amount_000s.ordinal()])));
 		rateSpread = Double.valueOf(unquote(fields[Field.rate_spread.ordinal()]));
-		minorityPercentage = Double.valueOf(unquote(fields[Field.minority_population.ordinal()]));
+		minorityPercentage = Double.valueOf(unquote(fields[Field.minority_population.ordinal()])) / 100.0d;
 		population = Integer.valueOf(unquote(fields[Field.population.ordinal()]));
-		medianIncome = Double.valueOf(unquote(fields[Field.hud_median_family_income.ordinal()]));
+		incomeToMedianIncomeRatio = Double.valueOf(unquote(fields[Field.hud_median_family_income.ordinal()])) / getIncome().doubleValue();
 	}
 
 	double getRateSpread() {
@@ -40,8 +40,8 @@ class ExtendedProfile extends Profile {
 		return population;
 	}
 
-	double getMedianIncome() {
-		return medianIncome;
+	double getIncomeToMedianIncomeRatio() {
+		return incomeToMedianIncomeRatio;
 	}
 
 	private static BigDecimal parseDouble(String raw) {
