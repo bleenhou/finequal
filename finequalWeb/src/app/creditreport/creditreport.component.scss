@@ -1,0 +1,333 @@
+
+.firstdiv{
+    height: 695px;
+    background: transparent linear-gradient(180deg, #C137A2 30%, #9243BE 66%, #694ED6 100%, #FFFFFF 100%, #D882C5 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 6px 12px #00000029;
+    border-radius: 16px;
+    padding:20px 24px;
+    color:#FFFFFFDE;
+  
+    .title{
+        color:#FFFFFFDE;
+    }
+    .avatardiv{
+        text-align: center;
+        padding-top: 35px;
+        margin-left: 50px;
+        img{
+            width:185px;
+        }
+        .overlayuser{
+            position: relative;
+            left: -78px;
+            width:90px;
+        }
+    }
+
+    .usernamediv{
+        font-size: 26pt;
+        font-weight: lighter;   
+        padding-left: 15px;
+        text-align: center;
+        opacity: .9;
+        mat-icon{
+            margin:10px;
+        }
+    }
+    .applicant{
+        text-align: center;
+        font-size: 13px;
+        opacity: .5;
+        margin-top: 10px;    
+    }
+    .persondetail{
+        text-align: center;
+        font-size: 12px;
+        margin-top: 8px;
+        letter-spacing: 1px;
+        opacity: .9;
+    }
+    .itemmain{
+        margin-left: 10px;
+        padding-top: 25px;
+        .itemdiv{
+            padding-top:26px;
+            .circlediv{
+                height: 10px;
+                width: 10px;                
+                margin-top:2px;
+                background-color: #ffc49c;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            .datadiv{
+                padding-left:15px;
+                .header{                   
+                    padding-bottom:7px;
+                    opacity: .5;
+                    font-size: 13px;
+                }
+                .child{
+                    font-size: 12px;
+                    font-weight: bold;
+                    opacity: .9;
+                }
+            }
+        }
+        .financebutton{
+            border-radius: 17px;
+            background: #5f41b2 0% 0% no-repeat padding-box;
+            color: FFFFFFDE;
+            opacity: 0.9;
+            text-align: center;
+            height: 25px;
+            width: 170px;
+            margin: 55px auto 0px auto;
+            padding-top:8px;
+            font-weight: bold;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+           
+        }
+    }
+}
+.title{
+    font-size: 15px;
+    font-weight: bold;
+    color:#000000DE;
+    opacity: .9;
+    margin-left: 13px;
+}
+.maindiv{
+    min-height:628px;
+}
+
+.thirddiv{
+    height: 695px;
+    background:transparent linear-gradient(180deg, #ECE9FA 0%, #F5F4FA 100%) 0% 0% no-repeat padding-box;
+    border: 1px solid #DAE2F4;
+    border-radius: 16px;
+    opacity: 1;
+    padding:20px 17px;
+    margin-right:30px;
+
+    .rejected{
+        text-align: center;
+        margin-top: 75px;
+        color:#486EC2;
+        font-weight: bold;
+        font-size: 17pt;
+        opacity: .5;
+    }
+    .approvebutton{
+        border-radius: 17px;
+        background: #C137A2  0% 0% no-repeat padding-box;
+        color: white;
+        opacity: 0.8;
+        text-align: center;
+        height: 25px;
+        width: 250px;
+        margin: 280px auto 0px auto;
+        padding-top:8px;
+        font-weight: bold;
+        font-size: 13px;
+        border: none;
+        cursor: pointer;
+        &:active{
+            border:none;
+        }
+    }
+}
+
+.seconddiv{
+    padding: 0px 28px 0px 28px;
+    .underline{
+        text-decoration: underline;
+    }
+    .amnttitlediv{
+        font-size: 12px;
+        letter-spacing: 0px;
+        color: #A2B6E1;
+        opacity: .9;
+        letter-spacing: 1px;
+        line-height: 20px;
+    }
+    .amntdiv{
+        font-size: 28px;
+        color: #FFFFFFDE;
+        opacity: .9;
+    }
+    .datatitlediv{
+        font-size: 12px;
+        opacity: .9;
+        color: #FFFFFF80;   
+        padding-top:14px;   
+        line-height: 18px;  
+    }
+    .datavaluediv{
+        font-size: 16px;
+        font-weight: medium;
+        color:#FFFFFFDE;
+        opacity: .9;
+        line-height: 30px;
+        .predictvalue{
+            color:#58c373;
+            opacity: .9;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+    }
+    .scorediv{
+        margin-top:20px;
+        border: 1px solid #DAE2F4;
+        border-radius: 16px;
+        opacity: 1;
+        height:552px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        .scoremain{
+            padding:20px;
+            .scoretitle{
+                font-weight: bold;
+                font-size: 14px;
+                color: #000000DE;
+                opacity: .9;            
+            }
+            .credittitle{
+                color:#00000080;
+                font-size: 12px;
+                line-height: 25px;
+                opacity: .9;
+            }
+            .biasdiv{        
+               
+                .biasmain{                        
+                    background: #D9D3F54D 0% 0% no-repeat padding-box;
+                    border: 1px solid #694ED640;
+                    border-radius: 8px;            
+                    width: 117px;
+                    height: 49px;     
+                    padding:5px;        
+                    text-align: center;
+                    opacity: 1;
+                    float: right;
+                    font-weight: bold;
+                    font-size: 10px;
+                    color:#694ED6;
+                    cursor: pointer;
+                    .firsticon{
+                        opacity: .5;
+                    }
+                    &:hover{
+                        border:  1px solid #DAE2F4;
+                        .firsticon{
+                            opacity: 1;
+                        }
+                    }
+                    .biastext{
+                        text-align: center;
+                        width: 65px;                    
+                        padding-top: 5px;
+                    }
+                    .firsticon{
+                        opacity: .8;
+                        width:23px;
+                    }
+                    .secondicon{
+                        float: right;
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+
+        .chartdiv{
+            text-align: center;
+            opacity: .8;   
+            .reading-affix{
+                color:green;
+            }             
+        }
+
+        .bottomdiv{
+            height: 210px;
+            background: #EBE8F9 0% 0% no-repeat padding-box;
+            border-radius: 0px 0px 16px 16px;
+            opacity: 1;
+            text-align:center;
+            vertical-align: center;
+            .boxdiv{
+                height: 116px;
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                border-radius: 8px;
+                opacity: 1;
+                margin:20px;
+                .bottomtitle{
+                    padding-top:13px;
+                    text-align: center;
+                    font-size: 9px;
+                    letter-spacing: 0px;
+                    color: #00000080;
+                    opacity: .9;
+                }
+                .scorechart{
+                    margin-top: 15px;
+                    .reading-block{
+                        font-weight: bold;
+                        color:#000000;
+                    }
+                }
+            }
+            .viewalldiv{
+                font-size:10pt;
+                color:#694ED6;
+                opacity: .6;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.historydiv{
+    margin-top:45px;
+    opacity: .9;
+    .linediv{
+        width: 9px;
+        background: #d9d3f5;
+        height: auto;
+        border-radius: 14px;
+        z-index: 0;
+        position: relative;
+        left:13px;   
+    }
+    .hisdatadiv{
+        margin-top: 15px;
+        z-index: 9999;
+        margin-bottom: 5px;
+        .circlediv{
+            height: 15px;
+            width: 16px;
+            background-color: #fff;
+            border: 1px solid #DAE2F4;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+        }
+        .titlediv{
+            font-weight: bold;
+            font-size: 12px;
+            color:#000000DE;     
+            line-height: 2;   
+        }
+        .descriptiondiv{
+            font-size: 12px;
+            line-height: 1.5;
+            color:#000000DE;
+        }
+    }
+}
+
+.mat-dialog-container{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 15px !important;
+}

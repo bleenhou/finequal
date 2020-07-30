@@ -1,0 +1,86 @@
+
+<mat-dialog-content class="dialogcontent">
+    <div fxLayout="row">
+       <!-- <img src="assets/hand.svg" class="thumbsicon">-->
+        <div class="dialogtitle" fxFlex="95">Bias detected</div>
+        <div class="closediv"><mat-icon class="closeicon" [mat-dialog-close]="true" >close</mat-icon></div>
+    </div>
+    <div fxLayout="row">      
+        <div class="overviewdiv" fxFlex="72">
+            <div class ="overviewHeader">
+                <div fxLayout="row">
+                    <div fxFlex="11" class="divider">
+                        <div class="interestTitle">Initial Rate</div>
+                        <div class="interestValue">{{borrowerData.loanData.interestRate  | number:'1.0-3'}}%</div>
+                    </div>
+                    <div fxFlex="90">
+                        <div class="overviewTitle">System detected a possible bias:</div>                       
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="predictiondiv" fxLayout="row">
+               <!-- <mat-radio-group aria-label="Select an option">
+                    <div class="inputdiv pred1"><mat-radio-button value="1"></mat-radio-button></div>
+                    <div class="inputdiv pred2"><mat-radio-button value="2"></mat-radio-button></div>
+                    <div class="inputdiv pred3"><mat-radio-button value="3"></mat-radio-button></div>
+                    <div class="inputdiv pred4"><mat-radio-button value="4"></mat-radio-button></div>
+                    <div class="inputdiv pred5"><mat-radio-button value="5"></mat-radio-button></div>
+                    <div class="inputdiv pred6"><mat-radio-button value="6"></mat-radio-button></div>
+                </mat-radio-group>
+                <mat-radio-group aria-label="Select an option">
+                    <div class="outputdiv out1"><mat-radio-button value="1"></mat-radio-button></div>
+                    <div class="outputdiv out2"><mat-radio-button value="2"></mat-radio-button></div>
+                </mat-radio-group>  -->
+                <div>
+                    <div class="checkboxdiv pred1"> <mat-checkbox [(ngModel)] ="loantypechecked" (ngModelChange)="onbiasSelect()" >Loan Type</mat-checkbox></div>
+                    <div class="checkboxdiv pred2"> <mat-checkbox [(ngModel)]="purposechecked" (ngModelChange)="onbiasSelect()">Purpose</mat-checkbox></div>
+                    <div class="checkboxdiv pred3"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="ethnicitychecked" (ngModelChange)="onbiasSelect()">Applicant Ethnicity</mat-checkbox></div>
+                    <div class="checkboxdiv pred4"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="coethnicitychecked" (ngModelChange)="onbiasSelect()">Co-Applicant Ethnicity</mat-checkbox></div>
+                    <div class="checkboxdiv pred5"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="genderchecked" (ngModelChange)="onbiasSelect()">Applicant Gender</mat-checkbox></div>
+                    <div class="checkboxdiv pred6"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="cogenderchecked" (ngModelChange)="onbiasSelect()">Co-Applicant Gender</mat-checkbox></div>
+                    <div class="checkboxdiv pred7 top"> <mat-checkbox [(ngModel)]="incomechecked" (ngModelChange)="onbiasSelect()">Income</mat-checkbox></div>
+                    <div class="checkboxdiv pred8 top"> <mat-checkbox [(ngModel)]="loanamountchecked" (ngModelChange)="onbiasSelect()">Loan Amount</mat-checkbox></div>
+                    <div class="checkboxdiv pred9 top"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="citychecked" (ngModelChange)="onbiasSelect()">City</mat-checkbox></div>
+                </div>
+
+                <img *ngIf="havebias" src="assets/dnn-01.png">
+                <img *ngIf="!havebias" src="assets/dnn-02.png">
+                <div fxFlex="70"></div>
+                <div fxFlex="30" class="suggestiondiv" *ngIf="!havebias">
+                    <div class="suggestedratetitle">Suggested rate</div>
+                    <div class="suggestedratevalue">{{biasrate | number:'1.0-3'}}%</div>
+                </div>
+            </div>
+            
+        </div>
+           
+        <div class="rightdiv" *ngIf="havebias">
+            <img src="assets/handbias.png" class="thumbsrighticon">
+            <mat-icon class="warningicon">error</mat-icon>
+            <img src="assets/Ellipse.png" class="ellipse"> 
+            <div class="predictiondetails">
+                <div class="predictiontitle">Suggestion</div>
+                <div class="predictionsubtitle">Do not take in account:</div>
+                <div fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> Ethnicity of applicant and co applicant</div></div>
+                <div fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> Gender of applicant and co applicant</div></div>
+                <div fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> Town median income</div></div>
+            </div>
+        </div>
+        <div class="rightdiv" *ngIf="!havebias">
+            <div class="successmessage">
+                <div class="title">Great!</div>
+                <div class="subtitle">This loan is certified Bias free :)</div>
+            </div>
+              
+            <img src="assets/handbias.png" class="handicon"> 
+            <mat-icon class="verifiedicon">verified_user</mat-icon>
+            <img src="assets/circlebias.svg" class="circleback"> 
+            <img src="assets/Logo.png" class="logoverified"> 
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="canceldiv" [mat-dialog-close]="true">Cancel</div>
+    <div class="removebiasdiv" (click)="onapplyclick()">Apply</div>
+</mat-dialog-actions>
