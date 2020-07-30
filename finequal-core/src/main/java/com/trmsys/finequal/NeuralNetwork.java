@@ -29,6 +29,8 @@ import org.nd4j.shade.protobuf.common.collect.Lists;
 import com.trmsys.finequal.openapi.model.Profile;
 import com.trmsys.finequal.openapi.model.Profile.ApplicantEthnicityEnum;
 import com.trmsys.finequal.openapi.model.Profile.ApplicantGenderEnum;
+import com.trmsys.finequal.openapi.model.Profile.CoApplicantEthnicityEnum;
+import com.trmsys.finequal.openapi.model.Profile.CoApplicantGenderEnum;
 import com.trmsys.finequal.openapi.model.Profile.LoanTypeEnum;
 import com.trmsys.finequal.openapi.model.Profile.PurposeEnum;
 
@@ -91,9 +93,9 @@ public class NeuralNetwork {
 		data.addAll(inputsForEnum(profile, p -> p.getLoanType(), LoanTypeEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getPurpose(), PurposeEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getApplicantEthnicity(), ApplicantEthnicityEnum.class));
-//		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantEthnicity(), CoApplicantEthnicityEnum.class));
+		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantEthnicity(), CoApplicantEthnicityEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getApplicantGender(), ApplicantGenderEnum.class));
-//		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantGender(), CoApplicantGenderEnum.class));
+		data.addAll(inputsForEnum(profile, p -> p.getCoApplicantGender(), CoApplicantGenderEnum.class));
 //		data.add(profile.getIncomeToMedianIncomeRatio());
 //		data.add(profile.getMinorityPercentage());
 //		data.add((double) profile.getPopulation());

@@ -53,10 +53,12 @@ definitions:
       loanType:
         type: string
         description: type of the loan
+        default: CONVENTIONAL
         enum: [CONVENTIONAL, VA_GUARANTEED, FHA_INSURED, FSA_RHS_GUARANTEED]
       purpose:
         type: string
         description: purpose of the loan
+        default: PURCHASE
         enum: [REFINANCING, PURCHASE, IMPROVEMENT]
       applicantEthnicity:
         type: string
@@ -66,6 +68,7 @@ definitions:
       coApplicantEthnicity:
         type: string
         description: ethnicity of the co-applicant
+        default: CAUCASIAN
         enum: [HISPANIC_LATINO, CAUCASIAN, AFRICAN_AMERICAN, AMERICAN_INDIAN, ASIAN, HAWAIIAN, NA]
       applicantGender:
         type: string
@@ -74,16 +77,20 @@ definitions:
         enum: [MALE, FEMALE, NA]
       coApplicantGender:
         type: string
+        default: FEMALE
         description: gender of the co-applicant
         enum: [MALE, FEMALE, NA]
       income:
         type: number
+        default: 100000
         description: income applicant (in dollars)
       loanAmount:
         type: number
+        default: 300000
         description: loan amount (in dollars)
       city:
         type: string
+        default: RICHMOND
         description: city of the applicant (for demo purposes)
         enum: [RICHMOND, PARKER, OAK_LEAF, NAPLES]
   Rate:
