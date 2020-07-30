@@ -45,7 +45,7 @@ class ExtendedProfile extends Profile {
 	}
 
 	private static BigDecimal parseDouble(String raw) {
-		return BigDecimal.valueOf(Double.valueOf(raw) * 1000);
+		return BigDecimal.valueOf(Double.valueOf(raw));
 	}
 
 	private static CoApplicantGenderEnum parseCoGender(String raw) {

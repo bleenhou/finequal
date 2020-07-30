@@ -21,7 +21,7 @@ public class Finequal {
 	
 	public static void main(String[] args) throws Exception {
 		final List<ExtendedProfile> profiles = loadData();
-		network = new NeuralNetwork(profiles.subList(100, profiles.size()));
+		network = new NeuralNetwork(profiles.subList(0, profiles.size()));
 		
 		// Testing block
 		for (ExtendedProfile p : profiles.subList(0, 100)) {
@@ -37,6 +37,7 @@ public class Finequal {
 		
 		// Run application
 		SpringApplication.run(Finequal.class, args);
+		Thread.sleep(100000000000L);
 	}
 
 	static List<ExtendedProfile> loadData() throws Exception {

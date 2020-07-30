@@ -39,6 +39,11 @@ paths:
           description: Rate computed
           schema:
             "$ref": "#/definitions/Rate"
+  "/cors":
+    get:
+      responses:
+        '200':
+          description: AllowOrigin
 definitions:
   Profile:
     title: Profile

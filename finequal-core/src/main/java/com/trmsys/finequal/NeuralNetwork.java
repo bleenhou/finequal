@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.datasets.iterator.impl.ListDataSetIterator;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
@@ -13,6 +14,9 @@ import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.model.stats.StatsListener;
+import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.DataSet;
@@ -25,16 +29,18 @@ import org.nd4j.shade.protobuf.common.collect.Lists;
 import com.trmsys.finequal.openapi.model.Profile;
 import com.trmsys.finequal.openapi.model.Profile.ApplicantEthnicityEnum;
 import com.trmsys.finequal.openapi.model.Profile.ApplicantGenderEnum;
-import com.trmsys.finequal.openapi.model.Profile.CoApplicantEthnicityEnum;
-import com.trmsys.finequal.openapi.model.Profile.CoApplicantGenderEnum;
 import com.trmsys.finequal.openapi.model.Profile.LoanTypeEnum;
 import com.trmsys.finequal.openapi.model.Profile.PurposeEnum;
 
 public class NeuralNetwork {
 
-	private static final int HIDDEN_LAYER_SIZE = 128;
-	private static final int TRAINING_EPOCH_COUNT = 5;
-	
+	private static final int HIDDEN_LAYER_SIZE = 512;
+	private static final int TRAINING_EPOCH_COUNT = 2; // 20
+    private static final UIServer uiServer = UIServer.getInstance();
+    private static final StatsStorage statsStorage = new InMemoryStatsStorage();
+    static {
+    	uiServer.attach(statsStorage);
+    }
 	private MultiLayerNetwork network;
 
 	public NeuralNetwork(List<ExtendedProfile> profiles) throws Exception {
@@ -52,9 +58,15 @@ public class NeuralNetwork {
                 .updater(new Nesterovs(0.01, 0.9))
                 .list()
                 .layer(0, new DenseLayer.Builder().nIn(inputLength).nOut(HIDDEN_LAYER_SIZE)
-                        .activation(Activation.RELU) //Change this to RELU and you will see the net learns very well very quickly
+                        .activation(Activation.RELU)
                         .build())
-                .layer(1, new OutputLayer.Builder(LossFunctions.LossFunction.MSE)
+                .layer(1, new DenseLayer.Builder().nIn(HIDDEN_LAYER_SIZE).nOut(HIDDEN_LAYER_SIZE)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(2, new DenseLayer.Builder().nIn(HIDDEN_LAYER_SIZE).nOut(HIDDEN_LAYER_SIZE)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(3, new OutputLayer.Builder(LossFunctions.LossFunction.MSE)
                         .activation(Activation.IDENTITY)
                         .nIn(HIDDEN_LAYER_SIZE).nOut(1).build())
                 .build()
@@ -63,6 +75,7 @@ public class NeuralNetwork {
 
 		// Train DNN
 		network.addListeners(new ScoreIterationListener(100));
+		network.addListeners(new StatsListener(statsStorage));
 		network.fit(trainingSet, TRAINING_EPOCH_COUNT);
 	}
 	
@@ -73,8 +86,8 @@ public class NeuralNetwork {
 
 	private static double[] inputForProfile(Profile profile) {
 		List<Double> data = Lists.newArrayList();
-		data.add(profile.getIncome().doubleValue() / 100000); // Normalizing
-		data.add(profile.getLoanAmount().doubleValue() / 100000); // Normalizing
+		data.add(profile.getIncome().doubleValue() / 1_000_000); // Normalizing
+		data.add(profile.getLoanAmount().doubleValue() / 100_000); // Normalizing
 		data.addAll(inputsForEnum(profile, p -> p.getLoanType(), LoanTypeEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getPurpose(), PurposeEnum.class));
 		data.addAll(inputsForEnum(profile, p -> p.getApplicantEthnicity(), ApplicantEthnicityEnum.class));
