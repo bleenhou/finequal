@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { BiasdialogComponent } from 'src/app/creditreport/biasdialog/biasdialog.component';
 import { FinequalService } from 'src/app/finequal.service';
+import { isNaN } from 'lodash';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-creditreport',
@@ -27,6 +29,7 @@ export class CreditreportComponent implements OnInit {
     this.borrowerData = this.finequalService.getBorrowerData();
     this.biasData = this.finequalService.getInitialBiasData();
     this.havebias = true;
+    this.finequalService.isLenderDashboard = false;
   } 
 
   biasmouseEnter():void{
@@ -58,7 +61,7 @@ export class CreditreportComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if(isNumber(result)){
         console.log(result);
         this.havebias = false;
         this.borrowerData.loanData.interestRate = result;

@@ -34,6 +34,7 @@ export class BiasdialogComponent implements OnInit {
   borrowerData:any;
   havebias:boolean;
   biasrate:number;
+  biasdetails:any;
   constructor(public dialogRef: MatDialogRef<BiasdialogComponent>, public finequalService:FinequalService) { }
 
   ngOnInit(): void {
@@ -48,6 +49,11 @@ export class BiasdialogComponent implements OnInit {
     this.citychecked = true;
     this.havebias = true;
     this.borrowerData = this.finequalService.getBorrowerData();
+    this.biasdetails = [
+      "Ethnicity of applicant and co applicant",
+      "Gender of applicant and co applicant",
+      "City"
+    ];
   }
 
   onbiasSelect():void{
@@ -82,9 +88,34 @@ export class BiasdialogComponent implements OnInit {
     }
     this.finequalService.getBiasData(payload).subscribe(res=>{
       console.log(res);
-      this.biasrate = res.rate*100;
-      this.havebias = false;
+      this.biasrate = res.rate*100;     
     });
+    if(!this.ethnicitychecked && !this.coethnicitychecked && !this.genderchecked && !this.cogenderchecked && !this.citychecked)
+    this.havebias = false;
+    this.biasdetails = [];
+    if(this.ethnicitychecked && this.ethnicitychecked){
+      this.biasdetails.push("Ethnicity of applicant and co applicant");
+    }else {
+      if(this.ethnicitychecked){
+        this.biasdetails.push("Ethnicity of applicant")
+      }else if(this.coethnicitychecked){
+        this.biasdetails.push("Ethnicity of co applicant")
+      }
+    }
+
+    if(this.genderchecked && this.cogenderchecked){
+      this.biasdetails.push("Gender of applicant and co applicant");
+    }else{
+      if(this.genderchecked){
+        this.biasdetails.push("Gender of applicant");
+      }else if(this.cogenderchecked){
+        this.biasdetails.push("Gender of co applicant");
+      }
+    }
+
+    if(this.citychecked){
+      this.biasdetails.push("City");
+    }
   }
 
   onapplyclick():void{

@@ -19,37 +19,26 @@
                    
                 </div>
             </div>
-            <div class="predictiondiv" fxLayout="row">
-               <!-- <mat-radio-group aria-label="Select an option">
-                    <div class="inputdiv pred1"><mat-radio-button value="1"></mat-radio-button></div>
-                    <div class="inputdiv pred2"><mat-radio-button value="2"></mat-radio-button></div>
-                    <div class="inputdiv pred3"><mat-radio-button value="3"></mat-radio-button></div>
-                    <div class="inputdiv pred4"><mat-radio-button value="4"></mat-radio-button></div>
-                    <div class="inputdiv pred5"><mat-radio-button value="5"></mat-radio-button></div>
-                    <div class="inputdiv pred6"><mat-radio-button value="6"></mat-radio-button></div>
-                </mat-radio-group>
-                <mat-radio-group aria-label="Select an option">
-                    <div class="outputdiv out1"><mat-radio-button value="1"></mat-radio-button></div>
-                    <div class="outputdiv out2"><mat-radio-button value="2"></mat-radio-button></div>
-                </mat-radio-group>  -->
-                <div>
-                    <div class="checkboxdiv pred1"> <mat-checkbox [(ngModel)] ="loantypechecked" (ngModelChange)="onbiasSelect()" >Loan Type</mat-checkbox></div>
-                    <div class="checkboxdiv pred2"> <mat-checkbox [(ngModel)]="purposechecked" (ngModelChange)="onbiasSelect()">Purpose</mat-checkbox></div>
-                    <div class="checkboxdiv pred3"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="ethnicitychecked" (ngModelChange)="onbiasSelect()">Applicant Ethnicity</mat-checkbox></div>
-                    <div class="checkboxdiv pred4"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="coethnicitychecked" (ngModelChange)="onbiasSelect()">Co-Applicant Ethnicity</mat-checkbox></div>
-                    <div class="checkboxdiv pred5"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="genderchecked" (ngModelChange)="onbiasSelect()">Applicant Gender</mat-checkbox></div>
-                    <div class="checkboxdiv pred6"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="cogenderchecked" (ngModelChange)="onbiasSelect()">Co-Applicant Gender</mat-checkbox></div>
-                    <div class="checkboxdiv pred7 top"> <mat-checkbox [(ngModel)]="incomechecked" (ngModelChange)="onbiasSelect()">Income</mat-checkbox></div>
-                    <div class="checkboxdiv pred8 top"> <mat-checkbox [(ngModel)]="loanamountchecked" (ngModelChange)="onbiasSelect()">Loan Amount</mat-checkbox></div>
-                    <div class="checkboxdiv pred9 top"> <mat-checkbox [disabled]="!havebias" [(ngModel)]="citychecked" (ngModelChange)="onbiasSelect()">City</mat-checkbox></div>
+            <div class="predictiondiv" fxLayout="row">              
+                <div style="height:200px">
+                    <div class="checkboxdiv pred1" [ngClass]="{'neurocircledisabled': !loantypechecked}" fxLayout="row"> <mat-checkbox [disabled]="!loantypechecked" [(ngModel)] ="loantypechecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Loan Type</mat-checkbox><div class="neurocircle green" fxFlex="14"></div> </div>
+                    <div class="checkboxdiv pred2" [ngClass]="{'neurocircledisabled': !purposechecked}" fxLayout="row"> <mat-checkbox [disabled]="!purposechecked" [(ngModel)]="purposechecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Purpose</mat-checkbox><div class="neurocircle green" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred3" [ngClass]="{'neurocircledisabled': !ethnicitychecked}" fxLayout="row"> <mat-checkbox [disabled]="!ethnicitychecked" [(ngModel)]="ethnicitychecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Applicant Ethnicity</mat-checkbox><div class="neurocircle orange" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred4" [ngClass]="{'neurocircledisabled': !coethnicitychecked}" fxLayout="row"> <mat-checkbox [disabled]="!coethnicitychecked" [(ngModel)]="coethnicitychecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Co-Applicant Ethnicity</mat-checkbox><div class="neurocircle orange" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred5" [ngClass]="{'neurocircledisabled': !genderchecked}" fxLayout="row"> <mat-checkbox [disabled]="!genderchecked" [(ngModel)]="genderchecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Applicant Gender</mat-checkbox><div class="neurocircle orange" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred6" [ngClass]="{'neurocircledisabled': !cogenderchecked}" fxLayout="row"> <mat-checkbox [disabled]="!cogenderchecked" [(ngModel)]="cogenderchecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Co-Applicant Gender</mat-checkbox><div class="neurocircle orange" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred7 top" [ngClass]="{'neurocircledisabled': !incomechecked}" fxLayout="row"> <mat-checkbox [disabled]="!incomechecked" [(ngModel)]="incomechecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Income</mat-checkbox><div class="neurocircle green" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred8 top" [ngClass]="{'neurocircledisabled': !loanamountchecked}" fxLayout="row"> <mat-checkbox [disabled]="!loanamountchecked" [(ngModel)]="loanamountchecked" (ngModelChange)="onbiasSelect()" fxFlex="86">Loan Amount</mat-checkbox><div class="neurocircle green" fxFlex="14"></div></div>
+                    <div class="checkboxdiv pred9 top" [ngClass]="{'neurocircledisabled': !citychecked}" fxLayout="row"> <mat-checkbox [disabled]="!citychecked" [(ngModel)]="citychecked" (ngModelChange)="onbiasSelect()" fxFlex="86">City</mat-checkbox><div class="neurocircle orange" fxFlex="14"></div></div>
                 </div>
 
-                <img *ngIf="havebias" src="assets/dnn-01.png">
-                <img *ngIf="!havebias" src="assets/dnn-02.png">
-                <div fxFlex="70"></div>
-                <div fxFlex="30" class="suggestiondiv" *ngIf="!havebias">
+                <img src="assets/dnn-01.png" class="neuroimage">
+                <div fxFlex="30" class="suggestiondiv" *ngIf="biasrate">
                     <div class="suggestedratetitle">Suggested rate</div>
                     <div class="suggestedratevalue">{{biasrate | number:'1.0-3'}}%</div>
+                </div>
+                <div fxFlex="5" class="biasedSuggestion" *ngIf="!biasrate">
+                    <div class="biastitle">Uncheck the bias entries to reduce inequality.</div>
                 </div>
             </div>
             
@@ -62,9 +51,7 @@
             <div class="predictiondetails">
                 <div class="predictiontitle">Suggestion</div>
                 <div class="predictionsubtitle">Do not take in account:</div>
-                <div fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> Ethnicity of applicant and co applicant</div></div>
-                <div fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> Gender of applicant and co applicant</div></div>
-                <div fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> Town median income</div></div>
+                <div *ngFor="let biasdata of biasdetails" fxLayout="row"><div class="liststyle"><mat-icon>keyboard_arrow_right</mat-icon></div><div class="predictiondata"> {{biasdata}}</div></div>
             </div>
         </div>
         <div class="rightdiv" *ngIf="!havebias">

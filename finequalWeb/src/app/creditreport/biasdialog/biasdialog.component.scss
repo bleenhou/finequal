@@ -20,6 +20,7 @@
             color: #486EC2;
             font-size: 16px;
             height: 0px;
+            cursor: pointer;
         }
     }
 
@@ -34,7 +35,7 @@
 
         .overviewHeader{
            
-            padding: 33px;
+            padding: 33px 33px 23px 33px;
             color: #000000DE;
             margin-left: 20px;
             .overviewTitle{
@@ -77,18 +78,59 @@
 
             .checkboxdiv{
                 position: relative;
-                left: 89px;
+                left: 60px;
                 text-align: left;
-                width: 70px;
+                width: 190px;
+                border-radius: 24px;
+                height: 35px;
+                background: #eae7f8;
                 font-size: 11px;
                 color:#8F7BE1;
                 font-weight: bold;
-                margin-bottom:19px;
+                margin-bottom:9px;
                 top:8px;
+                padding:6px 3px 3px 17px;
                 .mat-checkbox-background{
                     background: #8F7BE1;
                 }
-
+                .mat-checkbox-disabled{
+                    .mat-checkbox-background{
+                        background: transparent;
+                    }
+                    .mat-checkbox-label{
+                        color:#8F7BE1;
+                    }
+                }
+                .neurocircle{
+                    border-radius: 50%;
+                    height: 23px;
+                    margin-right: 3px;
+                    border: 1px solid #7dc98a;
+                    z-index: 200;
+                }
+               
+                .orange{
+                    background: #ffe8e0;
+                    border: 1px solid #ce8a7b;                    
+                }
+                .green{
+                    background: #e0ffe4;
+                    border: 1px solid #7dc98a;
+                }
+            }
+            .neurocircledisabled{
+                opacity: .5;
+                z-index: 300;
+                .neurocircle{
+                    margin:3px 10px 0px 0px;
+                    height: 18px;
+                    max-width:11% !important;
+                }
+            }
+            .neuroimage{
+                width:62%;    
+                margin: 24px 0px 0px 46px;
+                z-index: 100;
             }
             .top{
                 top:12px;
@@ -96,15 +138,32 @@
             .suggestiondiv{
                 position: relative;
                 left: -100px;
+                min-width: 200px;
+                z-index: 400;
                 .suggestedratetitle{
                     font-size: 12px;
                     color:#00000080;
-                    margin-top:168px;
+                    margin-top:180px;
                 }
                 .suggestedratevalue{
                     font-size: 24px;
                     font-weight: bold;
                     color:#000000DE;
+                }               
+            }
+            .biasedSuggestion{
+                position: relative;
+                left: -105px;
+                min-width: 200px;
+                .biastitle{
+                    color:#694ED6;
+                    font-size: 12px;
+                    margin-top: 173px;
+                    line-height: 1.5;
+                    position: relative;
+                    z-index:400;
+                    width: 200px;
+                    max-width: 100px;
                 }
             }
             .mat-radio-outer-circle{
@@ -113,6 +172,7 @@
             }
             .mat-radio-inner-circle{
                 background: #496EC2;
+                z-index: 300;
             }
             .pred1{                             
                 

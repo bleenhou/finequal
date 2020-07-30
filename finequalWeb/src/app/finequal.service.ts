@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class FinequalService {
 
   constructor(private apiService:ApiService) { }
-
+  public isLenderDashboard:boolean;
   public getDashboardData(){
     var chartData = [
       {
@@ -78,8 +78,8 @@ export class FinequalService {
       personalData:{  
         name:'Ole Namus', 
         avatar:'assets/user11.png', 
-        income:'2460.20', 
-        ethnicity:'Afro American', 
+        income:'88983.00', 
+        ethnicity:'Afroican American', 
         ethnicityenum:'AFRICAN_AMERICAN',
         coethnicity:'AFRICAN_AMERICAN',
         gender:'FEMALE',
@@ -91,14 +91,14 @@ export class FinequalService {
       loanData:{
         loanType:'CONVENTIONAL',
         purpose:'PURCHASE',
-        payoffDate:'Dec. 2025',
+        payoffDate:'Aug. 2040',
         monthlyPayment: 540,
         totalInterest: 5680,
-        interestRate:6.05,
+        interestRate:4.37,
         score:760,
         loanStatus:'Pending'
       },
-      scoreChartData: {income : 76, debtIncome: 56, locationScore: 45, loyaltyScore: 80},
+      scoreChartData: {income : 42, debtIncome: 42, locationScore: 33, loyaltyScore: 76},
       historyData: [
         {
           title:'Body 1',
@@ -125,6 +125,6 @@ export class FinequalService {
   }
 
   public getInitialBiasData(){
-    return { biasScore:200, biasRate:5.80, biasStatus:true}
+    return { biasScore:825, biasRate:5.80, biasStatus:true}
   }
 }

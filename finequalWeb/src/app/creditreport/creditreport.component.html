@@ -47,7 +47,7 @@
                 <div fxFlex="33" class="underline">{{borrowerData.loanData.payoffDate}}</div>
                 <div fxFlex="33">{{borrowerData.loanData.monthlyPayment|currency}}</div>
                 <div fxFlex="33">{{borrowerData.loanData.totalInterest|currency}}</div>
-                <div fxFlex="33" class="underline">{{borrowerData.loanData.interestRate | number:'1.0-3'}}%<span *ngIf="biasrate" class="predictvalue">{{biasrate}}%</span></div>
+                <div fxFlex="33" class="underline">{{borrowerData.loanData.interestRate | number:'1.0-3'}}%</div>
             </div>
         </div>
         <div class="scorediv">
@@ -63,18 +63,7 @@
                 </div>
             </div>
             <div class="chartdiv"> 
-                <ngx-gauge                        
-                [type]="gaugeType" 
-                [value]="borrowerData.loanData.score"  
-                [append]="gaugepreppend"
-                thick="20"
-                min="0"
-                max="1000"
-                gradient="true"
-                size="250"
-                foregroundColor="#694ED6"
-               >
-                </ngx-gauge>
+               <img src="assets/CreditScore.png">
             </div>
             <div class="bottomdiv" fxLayout="column">
                 <div fxLayout="row">

@@ -7,8 +7,11 @@
     <mat-toolbar-row>
         <a [routerLink]="'dashboard1'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Dashboard">apps</mat-icon><span>Apps</span></a>
     </mat-toolbar-row>
-    <mat-toolbar-row>
+    <mat-toolbar-row *ngIf="!isLenderDashboard">
         <a [routerLink]="'cred'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Settings">settings</mat-icon><span>Settings</span></a>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="isLenderDashboard">
+        <a [routerLink]="'cred'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="FinEqual">settings</mat-icon><span>Finequal</span></a>
     </mat-toolbar-row>
     <mat-toolbar-row>
             <a [routerLink]="'creditReport1'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Support">help</mat-icon><span>Support</span></a>
