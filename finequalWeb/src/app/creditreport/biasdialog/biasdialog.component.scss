@@ -93,14 +93,7 @@
                 .mat-checkbox-background{
                     background: #8F7BE1;
                 }
-                .mat-checkbox-disabled{
-                    .mat-checkbox-background{
-                        background: transparent;
-                    }
-                    .mat-checkbox-label{
-                        color:#8F7BE1;
-                    }
-                }
+                
                 .neurocircle{
                     border-radius: 50%;
                     height: 23px;
@@ -121,6 +114,12 @@
             .neurocircledisabled{
                 opacity: .5;
                 z-index: 300;
+                .mat-checkbox-background{
+                    background: transparent;
+                }
+                .mat-checkbox-label{
+                    color:#8F7BE1;
+                }
                 .neurocircle{
                     margin:3px 10px 0px 0px;
                     height: 18px;

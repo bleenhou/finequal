@@ -79,7 +79,7 @@ export class FinequalService {
         name:'Ole Namus', 
         avatar:'assets/user11.png', 
         income:'88983.00', 
-        ethnicity:'Afroican American', 
+        ethnicity:'African American', 
         ethnicityenum:'AFRICAN_AMERICAN',
         coethnicity:'AFRICAN_AMERICAN',
         gender:'FEMALE',
@@ -101,20 +101,24 @@ export class FinequalService {
       scoreChartData: {income : 42, debtIncome: 42, locationScore: 33, loyaltyScore: 76},
       historyData: [
         {
-          title:'Body 1',
-          text: 'If you look at any designer you admire'
+          title:'Stage 1-POS',
+          text: 'Loan application process',
+          color:'green'
         },
         {
-          title:'Body 2',
-          text: 'If you look at any designer you admire'
+          title:'Stage 2-LOS',
+          text: 'Loan Origination process',
+          color:'green'
         },
         {
-          title:'Body 3',
-          text: 'If you look at any designer you admire'
+          title:'Stage 3-LV',
+          text: 'Loan Validation process',
+          color:'green'
         },
         {
-          title:'Body 4',
-          text: 'If you look at any designer you admire'
+          title:'Stage 4-LA',
+          text: 'Loan Approval process',
+          color:'orange'
         }
       ]
     };

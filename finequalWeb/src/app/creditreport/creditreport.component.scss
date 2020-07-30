@@ -305,14 +305,20 @@
         margin-top: 15px;
         z-index: 9999;
         margin-bottom: 5px;
+        .green{            
+            background-color: #56C271;
+        }
+        .orange{            
+            background-color: #ffc49c;
+        }
         .circlediv{
             height: 15px;
             width: 16px;
-            background-color: #fff;
             border: 1px solid #DAE2F4;
             border-radius: 50%;
             display: inline-block;
             margin-right: 12px;
+            margin-top:5px;
         }
         .titlediv{
             font-weight: bold;

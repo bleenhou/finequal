@@ -138,7 +138,7 @@
             <div class="linediv"></div>
             <div fxLayout="column">
                 <div fxLayout="row" *ngFor="let history of borrowerData.historyData" class="hisdatadiv">
-                    <div class="circlediv"></div>
+                    <div class="circlediv" [ngClass]="history.color"></div>
                     <div fxLayout="column">
                         <div class="titlediv">{{history.title}}</div>
                         <div class="descriptiondiv">{{history.text}}</div>
