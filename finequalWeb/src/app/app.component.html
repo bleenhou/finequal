@@ -1,0 +1,18 @@
+<ng-container>
+  <div fxLayout="column" class="mainContent">
+    <div fxFlex="100" class="headerRow" fxLayout="row">
+      <img src="assets/Logo.png">
+    </div>
+  
+    <div fxLayout="row">
+      <app-navigation fxFlex="12"></app-navigation>
+      <div fxLayout="column" fxFlex="90">
+        
+        <div class="content-padding">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

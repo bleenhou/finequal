@@ -1,0 +1,306 @@
+.dialogcontent{
+   .thumbsicon{
+    color: #486EC2;
+    width: 35px;
+   }
+   .dialogtitle{
+    color: #000000DE;
+    font-weight: bold;
+    font-size: 23px;
+    margin-left: 12px;
+    opacity: 1  ;
+   }
+   .closediv{
+        border: 1px solid #694ED6;
+        border-radius: 50%;
+        padding: 4px 0px 0px 0px;
+        opacity: .5;
+        text-align: center;
+        .closeicon{
+            color: #486EC2;
+            font-size: 16px;
+            height: 0px;
+        }
+    }
+
+    .overviewdiv{
+        background: #F8F7FC 0% 0% no-repeat padding-box;
+        border: 1px solid #DAE2F4;
+        border-radius: 16px 0px 0px 16px;
+        width: 807px;
+        height: 524px;
+        margin-top: 25px;
+        margin-left: 4px;
+
+        .overviewHeader{
+           
+            padding: 33px;
+            color: #000000DE;
+            margin-left: 20px;
+            .overviewTitle{
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 2.5;
+                margin-left: 25px;
+            }
+            .overviewDesc{
+                font-size: 15px;
+            }
+            .interestTitle{
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            .interestValue{
+                font-size: 20px;
+                font-weight: bold;
+                margin-top:3px;
+            }
+            .divider{                
+                border-right: 1px solid #DAE2F4;
+            }
+        }
+        .predictiondiv{
+            .inputdiv{
+                position: relative;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                left: 195px;   
+            }
+            .outputdiv{
+                position: relative;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                left: 440px;  
+            }
+
+            .checkboxdiv{
+                position: relative;
+                left: 89px;
+                text-align: left;
+                width: 70px;
+                font-size: 11px;
+                color:#8F7BE1;
+                font-weight: bold;
+                margin-bottom:19px;
+                top:8px;
+                .mat-checkbox-background{
+                    background: #8F7BE1;
+                }
+
+            }
+            .top{
+                top:12px;
+            }
+            .suggestiondiv{
+                position: relative;
+                left: -100px;
+                .suggestedratetitle{
+                    font-size: 12px;
+                    color:#00000080;
+                    margin-top:168px;
+                }
+                .suggestedratevalue{
+                    font-size: 24px;
+                    font-weight: bold;
+                    color:#000000DE;
+                }
+            }
+            .mat-radio-outer-circle{
+                border-color: #496EC2;
+                opacity: .1;
+            }
+            .mat-radio-inner-circle{
+                background: #496EC2;
+            }
+            .pred1{                             
+                
+            }
+            .pred2{                             
+               
+            }
+            .pred3{                             
+               
+            }
+            .pred4{                             
+               
+            }
+            .pred5{                             
+               
+            }
+            .pred6{                             
+               
+            }
+            .pred7{                             
+                
+            }
+            .pred8{                             
+               
+            }
+            .pred9{                             
+                
+            }
+        }
+
+        .predictiondetails{
+            margin:25px 0px 0px 24px;
+            opacity: .9;
+            
+            .predictiontitle{
+                font-weight: bold;
+                font-size: 15px;
+                line-height: 2.5;
+                color:#496EC2;
+            }
+            .predictiondata{
+                font-size: 15px;
+                color:#496EC2;
+                line-height: 1.8;
+            }
+        }
+    } 
+
+   .rightdiv{
+        background: #694ED6  0% 0% no-repeat padding-box;
+        border-radius: 0px 24px 24px 0px;
+        width: 335px;
+        height: 524px;
+        margin: 25px 5px 0px 0px;
+        overflow: hidden;
+        .warningicon{
+            color: #F17FA2;
+            font-size: 35pt;
+            position: relative;
+            left: -31px;
+            top: -23px;
+            z-index: 99999;
+        }
+        .ellipse{
+            position: relative;
+            top: -50px;
+            z-index: 0;
+            left: 60px;
+        }
+        .thumbsrighticon{
+            margin: 52px 0px 30px 75px;
+            z-index: 99999;
+            position: relative;
+        }
+        .predictiondetails{
+            margin: 5px 0px 0px 24px;
+            opacity: 0.9;
+            top: -43px;
+            position: relative;
+            left: 20px;
+            .predictiontitle{
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 2.5;
+                color:#FFFFFF;
+            }
+            .predictionsubtitle{
+                font-size: 15px;
+                color:#FFFFFF;
+                margin-bottom: 20px;
+            }
+            .liststyle{
+                font-weight: bold;
+                color: #FFFFFF;
+            }
+            .predictiondata{
+                font-size: 15px;
+                color:#FFFFFF80;
+                line-height: 1.5;
+                max-width: 159px;
+                margin-bottom: 15px;
+                margin-left:6px;
+            }
+            .adjustbutton{
+                background: #dfe5f4 0% 0% no-repeat padding-box;
+                border-radius: 8px;
+                color: #496EC2;
+                font-size:13px;
+                width: 124px;
+                height: 26px;
+                margin-top: 22px;
+                padding-top: 10px;
+                text-align: center;
+            }
+        }
+        .successmessage{
+            margin:20px 28px;
+            .title{
+                font-size: 24px;
+                font-weight: bold;
+                color:#ffffff;
+                line-height: 35pt;
+            }
+            .subtitle{
+                font-size: 16px;
+                color:#FFFFFF80;
+                margin-left: 15px;
+                width:143px;
+                line-height: 1.5;
+            }
+        }
+        .handicon{
+            margin: 73px 0px 0px 82px;
+            position: relative;
+            z-index: 99999;
+            top: -13px;
+            left: -9px;
+        }
+        .verifiedicon{
+            font-size: 55px;
+            position: relative;
+            color: #80d194;
+            left: -39px;
+            z-index: 99999;
+        }
+        .circleback{
+            z-index: 0;
+            position: relative;
+            left: 42px;
+            top: -141px;
+            width:62%;
+        }
+        .logoverified{
+            float: right;
+            position: relative;
+            top: 183px;
+            width: 35%;
+            left: -34px;
+        }
+   }
+
+}
+
+.canceldiv{
+    border: 1px solid #694ED6;
+    border-radius: 17px;
+    width: 196px;
+    text-align: center;
+    height: 24px;
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: 13px;
+    color:#4A6FC3;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.removebiasdiv{
+    border-radius: 17px;
+    margin-top: 15px;
+    width: 196px;
+    text-align: center;
+    height: 24px;
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: 13px;
+    color:#ffff;
+    margin-left:10px;
+    background: #694ED6 0% 0% no-repeat padding-box;
+    cursor: pointer;
+}

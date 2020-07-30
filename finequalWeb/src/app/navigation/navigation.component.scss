@@ -1,0 +1,38 @@
+app-navigation{
+    border-radius: 20px;
+    opacity: .9;
+    .mat-toolbar{        
+        background: none;
+    }
+    .mat-toolbar-row{
+        padding:0px;
+        height:42px;
+    }
+    a{
+        text-decoration: none;
+        width:110px;        
+        padding-left: 10px;
+        margin-right: 15px;
+        font-weight: normal;
+        font-size: 13px;
+        letter-spacing: 0px;
+        color: #ffffff;
+        opacity: .5;
+        line-height: 3;
+
+        &.active{
+            background-color: #C137A2 ;
+            border-radius: 4px;
+            color: #ffffff;
+            opacity: .9;
+        }
+
+        .mat-icon{
+            vertical-align: middle;
+            margin-right:10px;
+        }
+    }
+
+
+   
+}

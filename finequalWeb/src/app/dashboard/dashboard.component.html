@@ -1,0 +1,99 @@
+
+<div fxLayout="row">
+    <div fxLayout="column" fxFlex="70" class="firstdiv">
+       <div fxLayout="row">
+           <div fxFlex="70" class="loantitle">Active Loans</div>
+           <input class="searchinput" placeholder="Search...">
+       </div>
+       <div class="headerrow" fxLayout="row" fxFlex="25">
+          <div fxLayout="column" fxFlex="15">
+              <div class="headertitle">KLPI Namus</div>
+              <div class="headerdata">{{dashboardData.headerData.header1}}</div>
+          </div>
+          <div fxLayout="column" fxFlex="15">
+              <div class="headertitle">KLPI Namus</div>
+              <div class="headerdata">{{dashboardData.headerData.header2}}</div>
+          </div>
+          <div fxLayout="column" fxFlex="15">
+             <div class="headertitle">KLPI Namus</div>
+             <div class="headerdata">{{dashboardData.headerData.header3}}</div>
+          </div> 
+          <div fxLayout="column" fxFlex="15">
+              <div class="headertitle">KLPI Namus</div>
+              <div class="headerdata">{{dashboardData.headerData.header4}}</div>
+          </div>
+       </div>
+
+       <mat-table #table [dataSource]="dashboardData.loanData" *ngIf="dashboardData.loanData && dashboardData.loanData.length">
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="checkbox">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let loan">
+                    <mat-checkbox >
+                    </mat-checkbox>
+                </mat-cell>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="firstname">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell title="{{loan.firstname}}" *matCellDef="let loan">
+                    <p class="text-truncate font-weight-600">{{loan.firstname}}</p>
+                </mat-cell>
+            </ng-container>
+        
+            <!-- Email Column -->
+            <ng-container matColumnDef="lastname">
+                <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Last name</mat-header-cell>
+                <mat-cell title="{{loan.lastname}}" *matCellDef="let loan" fxHide fxShow.gt-sm>
+                    <p class="email text-truncate">
+                        {{loan.lastname}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="score">
+                <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Score</mat-header-cell>
+                <mat-cell title="{{loan.score}}" *matCellDef="let loan" fxHide fxShow.gt-sm>
+                    <p class="email text-truncate">
+                        {{loan.score}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+            
+
+             <!-- Amount Column -->
+             <ng-container matColumnDef="amount">
+                <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Amount</mat-header-cell>
+                <mat-cell title="{{loan.amount}}" *matCellDef="let loan" fxHide fxShow.gt-sm>
+                    <p class="email text-truncate">
+                        {{loan.amount}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+            
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let loan; columns: displayedColumns;" class="contact" (click)="selectloan(loan)">
+            </mat-row>
+        </mat-table>
+        <div style="height:200px;width:90%;margin:10px auto;">
+            <ngx-charts-bar-vertical    
+                [results]="dashboardData.chartData"       
+                animations = "true"
+                xAxis="false"
+                yAxis="false"
+                [showGridLines]="showgridlines"      
+                [scheme]="color"
+                barPadding="25"
+            >
+            </ngx-charts-bar-vertical>
+        </div>
+    </div>
+    <div fxLayout="column" fxFlex="30" class="seconddiv">
+        <div fxFlex="30" class="rightdiv1"></div>
+        <div fxFlex="70" class="rightdiv2">
+            <div class="activityTitle">Activity</div>
+            <div *ngFor="let activity of dashboardData.activityList" class="activityData">{{activity}}</div>
+        </div>
+    </div>
+</div>

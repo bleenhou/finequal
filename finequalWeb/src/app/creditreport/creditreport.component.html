@@ -1,0 +1,163 @@
+<div fxLayout="row" class="maindiv">
+    <div class="firstdiv" fxFlex="25">
+        <div class="title">Borrower</div>
+        <div class="avatardiv">
+            <img [src]="borrowerData.personalData.avatar">
+            <img class="overlayuser" src="assets/user2.png">
+        </div>
+        <div class="usernamediv">{{borrowerData.personalData.name}}<mat-icon>keyboard_arrow_down</mat-icon></div>
+        <div class="applicant">Applicant</div>
+        <div class="persondetail">32y - Richmond, Texas</div>
+        <div class="itemmain">
+            <div class="itemdiv" fxLayout="row">
+                <div class="circlediv"></div>
+                <div class="datadiv" fxLayout="column">
+                    <div class="header">Income</div>
+                    <div class="child">{{borrowerData.personalData.income | currency}}</div>
+                </div>
+            </div>
+            <div class="itemdiv" fxLayout="row">
+                <div class="circlediv"></div>
+                <div class="datadiv" fxLayout="column">
+                    <div class="header">Ethnicity</div>
+                    <div class="child">{{borrowerData.personalData.ethnicity}}</div>
+                </div>
+            </div>
+            <div class="itemdiv" fxLayout="row">
+                <div class="circlediv"></div>
+                <div class="datadiv" fxLayout="column">
+                    <div class="header">Co-Applicant</div>
+                    <div class="child">{{borrowerData.personalData.coapplicant}}</div>
+                </div>
+            </div>
+            <div class="financebutton">Refinancing</div>
+        </div>
+    </div>
+    <div class="seconddiv" fxFlex="55" fxLayout="column">
+        <div class="amnttitlediv">Loan Amount</div>
+        <div class="amntdiv underline">{{borrowerData.personalData.loanAmount|currency}}</div>
+        <div>
+            <div class="datatitlediv" fxLayout="row">
+                <div fxFlex="33">Payoff date</div>
+                <div fxFlex="33">Monthly Payment</div>
+                <div fxFlex="33">Total Interest</div>
+                <div fxFlex="33">Interest rate</div>
+            </div>
+            <div class="datavaluediv" fxLayout="row">
+                <div fxFlex="33" class="underline">{{borrowerData.loanData.payoffDate}}</div>
+                <div fxFlex="33">{{borrowerData.loanData.monthlyPayment|currency}}</div>
+                <div fxFlex="33">{{borrowerData.loanData.totalInterest|currency}}</div>
+                <div fxFlex="33" class="underline">{{borrowerData.loanData.interestRate | number:'1.0-3'}}%<span *ngIf="biasrate" class="predictvalue">{{biasrate}}%</span></div>
+            </div>
+        </div>
+        <div class="scorediv">
+            <div fxLayout="row" class="scoremain">
+                <div fxLayout="column" fxFlex="100">
+                    <div class="scoretitle">Scores</div>
+                    <div class="credittitle">Credit</div>
+                </div>
+               
+                <div class="biasdiv" fxLayoutAlign="end end" (mouseenter) ="biasmouseEnter() "  (mouseleave) ="biasmouseLeave()" (click)="onbiasclick()">
+                    <img [src]="imgSrc"  (mouseover)="imgSrc = 'assets/bias-hover.png'" (mouseout)="imgSrc = 'assets/BiasDetect.png'">
+                    
+                </div>
+            </div>
+            <div class="chartdiv"> 
+                <ngx-gauge                        
+                [type]="gaugeType" 
+                [value]="borrowerData.loanData.score"  
+                [append]="gaugepreppend"
+                thick="20"
+                min="0"
+                max="1000"
+                gradient="true"
+                size="250"
+                foregroundColor="#694ED6"
+               >
+                </ngx-gauge>
+            </div>
+            <div class="bottomdiv" fxLayout="column">
+                <div fxLayout="row">
+                    <div fxFlex="20" class="boxdiv" fxLayout="column">
+                        <div class="bottomtitle">Income</div>
+                        <div class="scorechart"> 
+                            <ngx-gauge                        
+                            [type]="gaugeType" 
+                            [value]="borrowerData.scoreChartData.income"  
+                            preppendValue="$"
+                            append="%"
+                            thick="6"
+                            size="65"
+                            foregroundColor="#56C271"
+                            >
+                            </ngx-gauge>
+                        </div>
+                    </div>
+                    <div fxFlex="20" class="boxdiv" fxLayout="column">
+                        <div class="bottomtitle">Debt-to-income</div>
+                        <div class="scorechart"> 
+                            <ngx-gauge                        
+                            [type]="gaugeType" 
+                            [value]="borrowerData.scoreChartData.debtIncome"  
+                            preppendValue="$"
+                            append="%"
+                            thick="6"
+                            size="65"
+                            foregroundColor="#56C271"
+                            >
+                            </ngx-gauge>
+                        </div>
+                    </div>
+                    <div fxFlex="20" class="boxdiv" fxLayout="column">
+                        <div class="bottomtitle">Location Score</div>
+                        <div class="scorechart"> 
+                            <ngx-gauge                        
+                            [type]="gaugeType" 
+                            [value]="borrowerData.scoreChartData.locationScore"  
+                            preppendValue="$"
+                            append="%"
+                            thick="6"
+                            size="65"
+                            foregroundColor="#CA5000"
+                            >
+                            </ngx-gauge>
+                        </div>
+                    </div>
+                    <div fxFlex="20" class="boxdiv" fxLayout="column">
+                        <div class="bottomtitle">Loyalty Score</div>
+                        <div class="scorechart"> 
+                            <ngx-gauge                        
+                            [type]="gaugeType" 
+                            [value]="borrowerData.scoreChartData.loyaltyScore"  
+                            preppendValue="$"
+                            append="%"
+                            thick="6"
+                            size="65"
+                            foregroundColor="#56C271"
+                            >
+                            </ngx-gauge>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewalldiv">View all</div>
+            </div>
+        </div>
+    </div>
+    <div class="thirddiv" fxFlex="20"> 
+        <div class="title">Activity</div>
+        <div class="historydiv" fxLayout="row">
+            <div class="linediv"></div>
+            <div fxLayout="column">
+                <div fxLayout="row" *ngFor="let history of borrowerData.historyData" class="hisdatadiv">
+                    <div class="circlediv"></div>
+                    <div fxLayout="column">
+                        <div class="titlediv">{{history.title}}</div>
+                        <div class="descriptiondiv">{{history.text}}</div>
+                    </div>
+                </div>               
+            </div>            
+        </div>
+        <div class="rejected">{{borrowerData.loanData.loanStatus}}</div>
+        <div class="approvebutton">Approve</div>
+    </div>
+</div>
