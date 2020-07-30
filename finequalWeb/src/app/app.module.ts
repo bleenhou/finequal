@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
+import { LenderdashboardComponent } from './lenderdashboard/lenderdashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     NavigationComponent,
     HeaderComponent,
     CreditreportComponent,
-    BiasdialogComponent
+    BiasdialogComponent,
+    LenderdashboardComponent
   ],
   imports: [
     FormsModule,
