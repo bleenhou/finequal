@@ -52,7 +52,7 @@ export class BiasdialogComponent implements OnInit {
     this.biasdetails = [
       "Ethnicity of applicant and co applicant",
       "Gender of applicant and co applicant",
-      "City"
+      "Zipcode"
     ];
     this.onbiasSelect();
   }
@@ -115,7 +115,7 @@ export class BiasdialogComponent implements OnInit {
     }
 
     if(this.citychecked){
-      this.biasdetails.push("City");
+      this.biasdetails.push("Zipcode");
     }
   }
 
