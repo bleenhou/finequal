@@ -86,7 +86,7 @@ export class FinequalService {
         cogender:'FEMALE',
         city:'RICHMOND',
         coapplicant:'Emma Namus', 
-        loanAmount:34625.00
+        loanAmount:50000.00
       },
       loanData:{
         loanType:'CONVENTIONAL',

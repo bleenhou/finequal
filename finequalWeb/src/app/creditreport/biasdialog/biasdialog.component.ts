@@ -54,6 +54,7 @@ export class BiasdialogComponent implements OnInit {
       "Gender of applicant and co applicant",
       "City"
     ];
+    this.onbiasSelect();
   }
 
   onbiasSelect():void{

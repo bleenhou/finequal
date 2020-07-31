@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent{
   title = 'finequalwebapp';
-  constructor(){
-    
+  isLenderDashboard:boolean;
+  constructor( private route: Location){
+    var location = route.path();
+    if(location.includes('lenderdashboard')){
+      this.isLenderDashboard = true;
+    }
   }
 
 }

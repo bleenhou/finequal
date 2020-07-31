@@ -7,3 +7,149 @@
     background: url("../../assets/BG.png")no-repeat center center fixed;
     background-size: cover;
 }
+
+.maindiv{
+    min-height:628px;
+    .firstdiv{
+        height: 648px;
+        background: transparent linear-gradient(180deg, #C137A2 30%, #9243BE 66%, #694ED6 100%, #FFFFFF 100%, #D882C5 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0px 6px 12px #00000029;
+        border-radius: 16px;
+        padding:20px 24px;
+        color:#FFFFFFDE;
+
+        .title{
+            font-weight: bold;
+            font-size: 14px;
+            color: #FFFFFFDE;
+            margin-bottom: 30px;
+            margin-left: 5px;
+        }
+        .thumbdiv{
+            top: 132px;
+            left: 200px;
+            position: relative;
+        }
+        .avatarcontainer{  
+            margin-bottom: 20px;         
+            .avatardata{                
+                color: #FFFFFFDE;
+                margin: 4px 8px;
+                letter-spacing: .12px;
+                img{
+                    
+                }
+                .avatarname{
+                    font-weight: bold;
+                    line-height: 2;
+                    font-size: 12px;
+                }
+                .avatartext{
+                    font-weight: light;
+                    font-size: 12px;
+                    opacity: .8;
+                }
+            }
+        }
+    }
+    .centerdiv{
+        height: 695px;
+        margin-left: 30x;
+        .headerrow{
+            margin-left: 22px;
+            margin-top: 10px; 
+            color:#FFFFFFDE;
+
+            .headtitle{
+                font-weight: bold;
+                font-size: 20px;  
+                line-height: 1.8;             
+            }
+            .headsubtitle{
+                font-size: 20px;
+                opacity: .8;          
+            }
+        }
+        .contentdiv{            
+            margin-top: 34px;
+            margin-left: 28px;
+            .content1div{
+                .marginbottom{
+                    margin-bottom: 14px;
+                }
+                .left{
+                    background: #EDEAFA 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 3px 6px #00000029;
+                    border-radius: 8px;                   
+                    padding: 15px;
+                    
+                    .leftcontent{
+                        margin-left: 15px;
+                        .lefttitle{
+                            font-weight: bold;
+                            font-size: 12px;
+                            line-height: 2.5;
+                            color:#00000061;
+                        }
+                        .leftvalue{
+                            font-weight: bold;
+                            font-size: 22px;
+                            color: #000000DE;
+                        }
+                    }
+                }
+                
+            }
+            .content2div{
+                background: #EDEAFA 0% 0% no-repeat padding-box;
+                box-shadow: 0px 3px 6px #00000029;
+                border-radius: 8px;
+                margin-left: 20px;
+                padding: 20px;
+                .center1{
+                    .header{
+                        margin-left: 15px;
+                        .centertitle{
+                            font-weight: bolder;
+                            font-size: 14px;
+                            color:#000000DE;
+                            line-height: 1.5;
+                        }
+                        .centersubtitle{
+                            font-size: 10px;
+                            font-weight: light;
+                        }
+                    }
+                }
+
+                .centerchart{
+                    margin:33px 20px 0px 0px;
+                    width: 89%;
+                }
+            }
+            .content3div{
+                background: #8F7BE1 0% 0% no-repeat padding-box;
+                box-shadow: 0px 6px 12px #00000029;
+                border-radius: 16px;
+                margin-top: 20px;
+                margin-right: 29px;
+                padding: 20px;
+                .bottom1{
+                    top: 32px;
+                    position: relative;
+                }
+                .bottom2{
+                    width:50%;   
+                    position: relative;                 
+                    top: 55px;
+                }
+                .bottom3{
+                    width: 40%;
+                    left: 565px;
+                    margin-top: 56px;
+                    position: relative;
+                }
+            }
+        }
+    }
+}

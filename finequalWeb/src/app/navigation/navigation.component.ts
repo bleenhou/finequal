@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -8,7 +9,13 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  isLenderDashboard:boolean;
+  constructor(private route: Location) {
+    var location = route.path();
+    if(location.includes('lenderdashboard')){
+      this.isLenderDashboard = true;
+    }
+   }
 
   ngOnInit() {
     
