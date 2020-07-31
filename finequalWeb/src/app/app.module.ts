@@ -22,7 +22,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { LenderdashboardComponent } from './lenderdashboard/lenderdashboard.component';
-
+import { MatInputModule } from '@angular/material/input';
+import { NgxCurrencyModule } from "ngx-currency";
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +43,10 @@ import { LenderdashboardComponent } from './lenderdashboard/lenderdashboard.comp
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
+    NgxCurrencyModule,
     MatTabsModule,
     MatTableModule,
+    MatInputModule,
     MatDialogModule,
     NgxChartsModule,
     NgxGaugeModule,

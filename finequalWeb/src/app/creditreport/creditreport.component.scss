@@ -157,6 +157,15 @@
         font-size: 28px;
         color: #FFFFFFDE;
         opacity: .9;
+        input{
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 28px;
+            border-bottom: 1px solid white;     
+            text-align: left !important;
+        }
+
     }
     .datatitlediv{
         font-size: 12px;
@@ -176,6 +185,13 @@
             opacity: .9;
             margin-left: 8px;
             font-size: 12px;
+        }
+        .interesttext{
+            border: none;
+            color: white;
+            border-bottom: 1px solid white;     
+            text-align: left !important;
+            background: transparent;
         }
     }
     .scorediv{

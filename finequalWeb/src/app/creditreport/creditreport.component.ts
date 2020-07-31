@@ -77,4 +77,18 @@ export class CreditreportComponent implements OnInit {
       
     });
   }
+
+  onloanamountchange(e):void{
+    console.log(e);
+    this.borrowerData.personalData.loanAmount = e;
+    this.borrowerData.loanData.monthlyPayment = (e*(1+this.borrowerData.loanData.interestRate)^20)/240;
+    this.borrowerData.loanData.totalInterest = e*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-e;
+  
+  }
+
+  oninterestchange(e):void{
+    this.borrowerData.loanData.interestRate = e.srcElement.value.replace('%','');
+    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+this.borrowerData.loanData.interestRate)^20)/240;
+    this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-this.borrowerData.personalData.loanAmount;
+  }
 }

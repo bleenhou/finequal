@@ -35,7 +35,9 @@
     </div>
     <div class="seconddiv" fxFlex="55" fxLayout="column">
         <div class="amnttitlediv">Loan Amount</div>
-        <div class="amntdiv underline">{{borrowerData.personalData.loanAmount|currency}}</div>
+        <div class="amntdiv underline">  
+                <input currencyMask (ngModelChange)="onloanamountchange($event)" [(ngModel)]="borrowerData.personalData.loanAmount"/>
+        </div>
         <div>
             <div class="datatitlediv" fxLayout="row">
                 <div fxFlex="33">Payoff date</div>
@@ -47,7 +49,7 @@
                 <div fxFlex="33" class="underline">{{borrowerData.loanData.payoffDate}}</div>
                 <div fxFlex="33">{{borrowerData.loanData.monthlyPayment|currency}}</div>
                 <div fxFlex="33">{{borrowerData.loanData.totalInterest|currency}}</div>
-                <div fxFlex="33" class="underline">{{borrowerData.loanData.interestRate | number:'1.0-3'}}%</div>
+                <div fxFlex="33" class="underline"> <input class="interesttext" (change)="oninterestchange($event)" value="{{borrowerData.loanData.interestRate | number:'1.0-3'}}%"></div>
             </div>
         </div>
         <div class="scorediv">
