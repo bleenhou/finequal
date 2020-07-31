@@ -78,7 +78,7 @@ export class FinequalService {
       personalData:{  
         name:'Ole Namus', 
         avatar:'assets/user11.png', 
-        income:'88983.00', 
+        income:'68983.00', 
         ethnicity:'African American', 
         ethnicityenum:'AFRICAN_AMERICAN',
         coethnicity:'AFRICAN_AMERICAN',
@@ -86,7 +86,7 @@ export class FinequalService {
         cogender:'FEMALE',
         city:'RICHMOND',
         coapplicant:'Emma Namus', 
-        loanAmount:50000.00
+        loanAmount:30000.00
       },
       loanData:{
         loanType:'CONVENTIONAL',

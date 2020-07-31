@@ -22,7 +22,7 @@ export class CreditreportComponent implements OnInit {
   biasData:any;
   imgSrc = "assets/BiasDetect.png";
   biasimgSrc = "assets/BiasDetect.png";
-  unbiasImgSrc = "assets/BiasFreeDetect.png";
+  unbiasImgSrc = "assets/unbiasedimg.png";
   borrowerData:any;
   havebias:boolean;
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class CreditreportComponent implements OnInit {
     this.havebias = true;
     this.finequalService.isLenderDashboard = false;
 
-    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+this.borrowerData.loanData.interestRate )^20)/240;
+    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20 ))/240;
     this.borrowerData.loanData.totalInterest =this.borrowerData.personalData.loanAmount*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-this.borrowerData.personalData.loanAmount;
    
   } 
@@ -69,7 +69,7 @@ export class CreditreportComponent implements OnInit {
         console.log(result);
         this.havebias = result.havebias;
         this.borrowerData.loanData.interestRate = result.biasrate;
-        this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+result.biasrate)^20)/240;
+        this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*Math.pow((1+result.biasrate/100),20))/240;
         this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+(result.biasrate/100),20)-this.borrowerData.personalData.loanAmount;
         if(this.havebias){
             this.imgSrc = 'assets/BiasDetect.png';
@@ -86,14 +86,14 @@ export class CreditreportComponent implements OnInit {
   onloanamountchange(e):void{
     console.log(e);
     this.borrowerData.personalData.loanAmount = e;
-    this.borrowerData.loanData.monthlyPayment = (e*(1+this.borrowerData.loanData.interestRate)^20)/240;
+    this.borrowerData.loanData.monthlyPayment = (e*Math.pow((1+this.borrowerData.loanData.interestRate/100),20))/240;
     this.borrowerData.loanData.totalInterest = e*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-e;
   
   }
 
   oninterestchange(e):void{
     this.borrowerData.loanData.interestRate = e.srcElement.value.replace('%','');
-    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+this.borrowerData.loanData.interestRate)^20)/240;
+    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*Math.pow((1+this.borrowerData.loanData.interestRate/100),20))/240;
     this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-this.borrowerData.personalData.loanAmount;
   }
 }
