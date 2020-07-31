@@ -30,9 +30,8 @@ export class CreditreportComponent implements OnInit {
     this.biasData = this.finequalService.getInitialBiasData();
     this.havebias = true;
     this.finequalService.isLenderDashboard = false;
-
-    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+this.borrowerData.loanData.interestRate )^20)/240;
-    this.borrowerData.loanData.totalInterest =this.borrowerData.personalData.loanAmount*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-this.borrowerData.personalData.loanAmount;
+    this.borrowerData.loanData.monthlyPayment = this.borrowerData.personalData.loanAmount*Math.pow(1 + this.borrowerData.loanData.interestRate/100, 20)/240;
+    this.borrowerData.loanData.totalInterest =  this.borrowerData.personalData.loanAmount*Math.pow(1 + this.borrowerData.loanData.interestRate/100 ,20) - this.borrowerData.personalData.loanAmount;
    
   } 
 
@@ -69,8 +68,8 @@ export class CreditreportComponent implements OnInit {
         console.log(result);
         this.havebias = false;
         this.borrowerData.loanData.interestRate = result;
-        this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+result)^20)/240;
-        this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+(result/100),20)-this.borrowerData.personalData.loanAmount;
+        this.borrowerData.loanData.monthlyPayment = this.borrowerData.personalData.loanAmount*Math.pow(1+result/100,20)/240;
+        this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+result/100,20)-this.borrowerData.personalData.loanAmount;
         this.imgSrc = this.unbiasImgSrc;  
       }
       console.log('The dialog was closed');
