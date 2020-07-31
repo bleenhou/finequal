@@ -22,7 +22,7 @@ export class CreditreportComponent implements OnInit {
   biasData:any;
   imgSrc = "assets/BiasDetect.png";
   biasimgSrc = "assets/BiasDetect.png";
-  unbiasImgSrc = "assets/bias-badge-success.png";
+  unbiasImgSrc = "assets/BiasFreeDetect.png";
   borrowerData:any;
   havebias:boolean;
   ngOnInit(): void {
@@ -30,8 +30,9 @@ export class CreditreportComponent implements OnInit {
     this.biasData = this.finequalService.getInitialBiasData();
     this.havebias = true;
     this.finequalService.isLenderDashboard = false;
-    this.borrowerData.loanData.monthlyPayment = this.borrowerData.personalData.loanAmount*Math.pow(1 + this.borrowerData.loanData.interestRate/100, 20)/240;
-    this.borrowerData.loanData.totalInterest =  this.borrowerData.personalData.loanAmount*Math.pow(1 + this.borrowerData.loanData.interestRate/100 ,20) - this.borrowerData.personalData.loanAmount;
+
+    this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+this.borrowerData.loanData.interestRate )^20)/240;
+    this.borrowerData.loanData.totalInterest =this.borrowerData.personalData.loanAmount*Math.pow(1+(this.borrowerData.loanData.interestRate/100),20)-this.borrowerData.personalData.loanAmount;
    
   } 
 
@@ -64,13 +65,18 @@ export class CreditreportComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(isNumber(result)){
+      if(isNumber(result.biasrate)){
         console.log(result);
-        this.havebias = false;
-        this.borrowerData.loanData.interestRate = result;
-        this.borrowerData.loanData.monthlyPayment = this.borrowerData.personalData.loanAmount*Math.pow(1+result/100,20)/240;
-        this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+result/100,20)-this.borrowerData.personalData.loanAmount;
-        this.imgSrc = this.unbiasImgSrc;  
+        this.havebias = result.havebias;
+        this.borrowerData.loanData.interestRate = result.biasrate;
+        this.borrowerData.loanData.monthlyPayment = (this.borrowerData.personalData.loanAmount*(1+result.biasrate)^20)/240;
+        this.borrowerData.loanData.totalInterest = this.borrowerData.personalData.loanAmount*Math.pow(1+(result.biasrate/100),20)-this.borrowerData.personalData.loanAmount;
+        if(this.havebias){
+            this.imgSrc = 'assets/BiasDetect.png';
+        }
+        else{
+          this.imgSrc = this.unbiasImgSrc;  
+          }
       }
       console.log('The dialog was closed');
       

@@ -2,16 +2,13 @@
 
 <mat-toolbar>    
     <mat-toolbar-row>
-        <a [routerLink]="'creditReport'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Report">folder</mat-icon><span>Report</span></a>
+        <a [routerLink]="'creditReport'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Report">account_box</mat-icon><span>Borrower</span></a>
     </mat-toolbar-row>
     <mat-toolbar-row>
         <a [routerLink]="'dashboard1'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Dashboard">apps</mat-icon><span>Apps</span></a>
     </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="!isLenderDashboard">
-        <a [routerLink]="'lenderdashboard'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Settings">settings</mat-icon><span>Settings</span></a>
-    </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="isLenderDashboard">
-        <a [routerLink]="'lenderdashboard'" [routerLinkActive]="['active']"><img src="assets/finequalmenu.png"><span>Finequal</span></a>
+    <mat-toolbar-row>
+        <a [routerLink]="'lenderdashboard'" [routerLinkActive]="['active']"><img src="assets/finequalmenu.png"><span>Report</span></a>
     </mat-toolbar-row>
     <mat-toolbar-row>
             <a [routerLink]="'creditReport1'" [routerLinkActive]="['active']"><mat-icon aria-hidden="false" aria-label="Support">help</mat-icon><span>Support</span></a>

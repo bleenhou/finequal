@@ -120,6 +120,13 @@ export class BiasdialogComponent implements OnInit {
   }
 
   onapplyclick():void{
-    this.dialogRef.close(this.biasrate);
+    if(!this.ethnicitychecked && !this.coethnicitychecked && !this.genderchecked && !this.cogenderchecked && !this.citychecked)
+    {
+       this.havebias = false;
+    }
+    else{
+      this.havebias = true;
+    }
+    this.dialogRef.close({havebias:this.havebias, biasrate:this.biasrate});
   }
 }
