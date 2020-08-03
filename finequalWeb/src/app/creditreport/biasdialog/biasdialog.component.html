@@ -33,11 +33,11 @@
                 </div>
 
                 <img src="assets/dnn-01.png" class="neuroimage">
-                <div fxFlex="30" class="suggestiondiv" *ngIf="biasrate">
+                <div class="suggestiondiv" *ngIf="biasrate">
                     <div class="suggestedratetitle">Suggested rate</div>
                     <div class="suggestedratevalue">{{biasrate | number:'1.0-3'}}%</div>
                 </div>
-                <div fxFlex="5" class="biasedSuggestion" *ngIf="!biasrate">
+                <div  class="biasedSuggestion" *ngIf="!biasrate">
                     <div class="biastitle">Uncheck the bias entries to reduce inequality.</div>
                 </div>
             </div>
